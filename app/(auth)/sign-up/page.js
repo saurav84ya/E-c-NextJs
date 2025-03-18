@@ -1,8 +1,31 @@
+"use client"
+import { login, reg } from '@/app/redux/slice';
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function page() {
+
+    const dispatch = useDispatch();
+    const { isLoading, error, isAuth ,user } = useSelector((state) => state.auth);
+    console.log("isAuth",isAuth,user)
+
+    const [formData, setFormData] = useState({name : "" ,email: "", password: "" });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        // e.preventDefault();
+        dispatch(reg(formData));
+               
+        
+        // console.log("f",formData)
+    };
+
+
   return (
     <main className='w-full flex justify-center items-center bg-gray-300 p-24 min-h-screen  ' >
     <section className='flex flex-col gap-3 ' >
@@ -13,39 +36,48 @@ export default function page() {
             <h1 className='font-bold text-xl  ' >
                 Create an Account
             </h1>
-            <form className='flex my-3 flex-col gap-3' >
+            <div className='flex my-3 flex-col gap-3' >
                 < >
                 <input
+                onChange={handleChange} 
                         placeholder='Enter Your Name'    
                         type='text'
-                        name='user-name'
+                        name='name'
                         id='user-name'
                         className='px-3 py-2 rounded-xl border focus:outline-none w-full '
                     />
                     <input
+                    onChange={handleChange} 
                         placeholder='Enter Your Email'    
                         type='email'
-                        name='user-email'
+                        name='email'
                         id='user-email'
                         className='px-3 py-2 rounded-xl border focus:outline-none w-full '
                     />
                     <input
+                    onChange={handleChange} 
                         placeholder='Enter Your Password'    
                         type='password'
-                        name='user-password'
+                        name='password'
                         id='user-password'
                         className='px-3 py-2 rounded-xl border focus:outline-none w-full '
                     />
-                    <button className=' cursor-pointer bg-blue-500 p-3 font-bold text-white rounded-xl ' >Create an Account</button>
+                    <button disabled={isLoading}  onClick={handleSubmit}  className=' cursor-pointer bg-blue-500 p-3 font-bold text-white rounded-xl ' >
+                       
+                        {
+                    !isLoading ? "Create an Account" : "Loading..."
+                }
+                        </button>
                 </>
-            </form>
+            </div>
             <div className='flex  justify-between  border-b pb-5' >
                 <Link className='text-blue-800 font-semibold '  href={'/login'}>
                   already account ? login
                 </Link>
             </div>
-            <button className=' mt-5 cursor-pointer bg-gray-300 p-3 w-full font-semibold text-black rounded-xl ' >
-                Sign up With Google
+            
+            <button  className=' mt-5 cursor-pointer bg-gray-300 p-3 w-full font-semibold text-black rounded-xl ' >
+            Sign up With Google
             </button>
 
         </div>

@@ -4,12 +4,15 @@ import React from 'react'
 
 export default function page() {
   return (
-    <main className='w-full flex justify-center items-center bg-gray-300 p-24 min-h-screen  ' >
+    <main className='w-full flex justify-center items-center bg-gray-300  h-[100vh]  p-5 md:p-14 min-h-screen  ' >
         <section className='flex flex-col gap-3 ' >
             <div className='flex justify-center' >
                 <Image alt='logo' src={"/logo.png"} width={120} height={200}  />
             </div>
-            <div className='bg-white p-10 gap-3 rounded-xl min-w-[440px]  ' >
+
+
+
+            <div className='bg-white p-10 gap-3 rounded-xl w-[350px] md:w-[440px] ' >
                 <h1 className='font-bold text-xl  ' >
                     Login With Email
                 </h1>
@@ -45,6 +48,8 @@ export default function page() {
                 </button>
 
             </div>
+
+
 
 
         </section>

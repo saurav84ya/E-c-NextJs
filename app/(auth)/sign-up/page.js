@@ -27,12 +27,12 @@ export default function page() {
 
 
   return (
-    <main className='w-full flex justify-center items-center bg-gray-300 p-24 min-h-screen  ' >
+    <main className='w-full flex justify-center items-center bg-gray-300  min-h-screen  ' >
     <section className='flex flex-col gap-3 ' >
         <div className='flex justify-center' >
             <Image alt='logo' src={"/logo.png"} width={120} height={200}  />
         </div>
-        <div className='bg-white p-10 gap-3 rounded-xl min-w-[440px]  ' >
+        <div className='bg-white p-10 gap-3 rounded-xl w-[350px] md:min-w-[440px]  ' >
             <h1 className='font-bold text-xl  ' >
                 Create an Account
             </h1>
